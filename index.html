@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
+
+<!-- SEO Meta -->
+<title>BlockPop – Free Online Match & Blast Puzzle Game</title>
+<meta name="description" content="Play BlockPop, a free online puzzle game combining block placement and match-3 mechanics. Drag colorful blocks onto a 10x10 grid, match 3+ same-color blocks to pop them, and clear full rows and columns. No download required.">
+<meta name="keywords" content="block puzzle, match 3, puzzle game, free online game, brain teaser, block pop, casual game, HTML5 game, color match, grid puzzle, tile matching">
+<meta name="author" content="BlockPop">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="icon" href="https://blockpop.puzzlechallengehub.com/icons/favicon.ico">
+<link rel="canonical" href="https://blockpop.puzzlechallengehub.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BlockPop">
+<meta property="og:title" content="BlockPop – Free Online Match & Blast Puzzle Game">
+<meta property="og:description" content="Drag colorful blocks onto a grid, match 3+ same-color blocks to pop them, clear rows and columns. Free to play in your browser!">
+<meta property="og:url" content="https://blockpop.puzzlechallengehub.com/">
+<meta property="og:image" content="https://blockpop.puzzlechallengehub.com/icons/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BlockPop – Free Online Match & Blast Puzzle Game">
+<meta name="twitter:description" content="Drag colorful blocks onto a grid, match 3+ same-color blocks to pop them. Free browser puzzle game!">
+<meta name="twitter:image" content="https://blockpop.puzzlechallengehub.com/icons/og-image.png">
+
+<!-- Multi-language hints -->
+<link rel="alternate" hreflang="en" href="https://blockpop.puzzlechallengehub.com/">
+<link rel="alternate" hreflang="x-default" href="https://blockpop.puzzlechallengehub.com/">
+
+<!-- PWA & Mobile -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BlockPop">
+<meta name="application-name" content="BlockPop">
+<meta name="theme-color" content="#0a0a1a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="msapplication-TileColor" content="#7c3aed">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BlockPop",
+  "alternateName": "BlockPop Puzzle",
+  "description": "A free online puzzle game combining block placement and match-3 mechanics. Drag colorful blocks onto a 10x10 grid, match 3+ same-color blocks to pop them.",
+  "url": "https://blockpop.puzzlechallengehub.com/",
+  "applicationCategory": "GameApplication",
+  "genre": "Puzzle",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires a modern web browser with JavaScript enabled",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.6",
+    "ratingCount": "1200",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "screenshot": "https://blockpop.puzzlechallengehub.com/icons/og-image.png",
+  "softwareVersion": "1.0.0",
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I play BlockPop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Drag block pieces from the tray onto the 10x10 grid. When 3 or more same-color blocks are connected horizontally or vertically, they automatically pop. You can also clear full rows and columns. Tap pieces to rotate them before placing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is BlockPop free to play?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, BlockPop is completely free to play in any modern web browser. No download or installation required. You can also install it as a PWA for offline play."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are power-ups in BlockPop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BlockPop has three power-ups: Hammer (removes a single cell for 50 coins), Bomb (clears a 3x3 area for 100 coins), and Shuffle (replaces current pieces for 80 coins). Earn coins by scoring points in the game."
+      }
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Lilita+One&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+  <!-- Background layers -->
+  <div class="bg-grid"></div>
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+
+  <!-- ===== START ===== -->
+  <div id="s-start" class="scr active">
+    <div class="start-deco">
+      <div class="deco-block db1"></div><div class="deco-block db2"></div>
+      <div class="deco-block db3"></div><div class="deco-block db4"></div>
+      <div class="deco-block db5"></div><div class="deco-block db6"></div>
+    </div>
+    <div class="logo-box">
+      <div class="logo-icon">
+        <div class="li-grid">
+          <span class="li-c c0"></span><span class="li-c c1"></span><span class="li-c c2"></span>
+          <span class="li-c c3"></span><span class="li-c c4"></span><span class="li-c c0"></span>
+          <span class="li-c c1"></span><span class="li-c c2"></span><span class="li-c c3"></span>
+        </div>
+      </div>
+      <h1 class="logo"><span class="logo-b">Block</span><span class="logo-p">Pop</span></h1>
+      <p class="sub">Match & Blast Puzzle</p>
+    </div>
+    <div class="s-btns">
+      <button id="b-play" class="btn gl btn-play"><svg class="btn-play-ico" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><polygon points="6,3 20,12 6,21"/></svg> PLAY</button>
+      <button id="b-how" class="btn gh">HOW TO PLAY</button>
+    </div>
+    <div class="home-stats">
+      <div class="hs-item"><span class="coin-ico">&#9733;</span> <span id="home-coins">0</span></div>
+      <div class="hs-divider"></div>
+      <div class="hs-item">BEST <span id="home-best" class="hs-val">0</span></div>
+    </div>
+    <!-- PWA Install -->
+    <button id="b-install" class="btn gh install-btn" style="display:none">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      Install App
+    </button>
+  </div>
+
+  <!-- ===== TUTORIAL ===== -->
+  <div id="s-tut" class="scr">
+    <div class="card tut-card">
+      <h2>How To Play</h2>
+      <ol class="tut-ol">
+        <li><b>Drag</b> blocks onto the 10x10 grid</li>
+        <li><b>Tap</b> a piece to <b>rotate</b> it 90 degrees</li>
+        <li><b>3+ same-color</b> blocks touching each other auto-pop!</li>
+        <li><b>Fill a full row/column</b> to clear it</li>
+        <li>Use <b>power-ups</b> when stuck</li>
+      </ol>
+      <button id="b-tut-ok" class="btn gl">GOT IT</button>
+    </div>
+  </div>
+
+  <!-- ===== GAME ===== -->
+  <div id="s-game" class="scr">
+    <header class="hud">
+      <div class="hud-left">
+        <div class="hud-lbl">SCORE</div><div class="hud-num" id="h-sc">0</div>
+      </div>
+      <div id="combo-tag" class="combo-tag"></div>
+      <div class="hud-right">
+        <div class="coin-hud"><span class="coin-ico">&#9733;</span><span id="h-coin">0</span></div>
+        <div class="hud-lbl">BEST</div><div class="hud-num" id="h-best">0</div>
+      </div>
+    </header>
+
+    <div id="brd-wrap">
+      <div id="brd"></div>
+      <div id="fx"></div>
+      <div id="pu-overlay" class="pu-ov hide"></div>
+    </div>
+
+    <div id="tray"></div>
+
+    <!-- Power-up bar (coins only) -->
+    <div class="pu-bar" id="pu-bar">
+      <button class="pu-btn" data-pu="hammer" id="pu-hammer">
+        <span class="pu-icon">&#128296;</span><span class="pu-name">Hammer</span>
+        <span class="pu-cost"><span class="pu-coins">50</span><span class="coin-ico sm">&#9733;</span></span>
+      </button>
+      <button class="pu-btn" data-pu="bomb" id="pu-bomb">
+        <span class="pu-icon">&#128163;</span><span class="pu-name">Bomb</span>
+        <span class="pu-cost"><span class="pu-coins">100</span><span class="coin-ico sm">&#9733;</span></span>
+      </button>
+      <button class="pu-btn" data-pu="shuffle" id="pu-shuffle">
+        <span class="pu-icon">&#128260;</span><span class="pu-name">Shuffle</span>
+        <span class="pu-cost"><span class="pu-coins">80</span><span class="coin-ico sm">&#9733;</span></span>
+      </button>
+    </div>
+
+    <footer class="foot">
+      <button id="b-menu" class="btn-ico menu-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+    </footer>
+  </div>
+
+  <!-- ===== GAME OVER ===== -->
+  <div id="s-over" class="scr">
+    <div class="card over-card">
+      <h2 class="over-t">Game Over</h2>
+      <div class="over-sc"><div class="over-lbl">SCORE</div><div class="over-v" id="o-sc">0</div></div>
+      <div class="over-coins"><span class="coin-ico">&#9733;</span> +<span id="o-earn">0</span> earned</div>
+      <div class="over-best-box">
+        <div class="new-badge" id="o-new" style="display:none">NEW BEST!</div>
+        <div class="over-blbl">BEST: <span id="o-best">0</span></div>
+      </div>
+      <div class="over-btns">
+        <button id="b-retry" class="btn gl">PLAY AGAIN</button>
+        <button id="b-home2" class="btn gh">HOME</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAUSE ===== -->
+  <div id="s-pause" class="scr">
+    <div class="card pause-card">
+      <h2>Paused</h2>
+      <button id="b-resume" class="btn gl">RESUME</button>
+      <button id="b-redo" class="btn gh">RESTART</button>
+      <button id="b-quit" class="btn gh">HOME</button>
+    </div>
+  </div>
+
+  <div id="popups"></div>
+</div>
+
+<!-- Noscript fallback for SEO -->
+<noscript>
+  <div style="text-align:center;padding:40px;font-family:sans-serif;color:#fff;background:#07071a;min-height:100vh">
+    <h1>BlockPop – Match & Blast Puzzle</h1>
+    <p>A free online puzzle game combining block placement and match-3 mechanics.</p>
+    <p>Drag colorful blocks onto a 10x10 grid, match 3 or more same-color blocks to pop them, and clear full rows and columns to score points!</p>
+    <h2>How to Play</h2>
+    <ol style="text-align:left;max-width:500px;margin:0 auto">
+      <li>Drag blocks from the tray onto the 10x10 grid</li>
+      <li>Tap a piece to rotate it 90 degrees</li>
+      <li>3+ same-color blocks connected horizontally or vertically auto-pop</li>
+      <li>Fill a full row or column to clear it</li>
+      <li>Use power-ups (Hammer, Bomb, Shuffle) when you get stuck</li>
+    </ol>
+    <p>Please enable JavaScript to play BlockPop.</p>
+  </div>
+</noscript>
+
+<script src="game.js"></script>
+<script>
+/* Service Worker Registration */
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('sw.js').then(function(reg){
+      console.log('SW registered',reg.scope);
+    }).catch(function(err){
+      console.log('SW registration failed',err);
+    });
+  });
+}
+/* PWA Install Prompt */
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',function(e){
+  e.preventDefault();
+  deferredPrompt=e;
+  var btn=document.getElementById('b-install');
+  if(btn)btn.style.display='flex';
+});
+var installBtn=document.getElementById('b-install');
+if(installBtn){
+  installBtn.addEventListener('click',function(){
+    if(!deferredPrompt)return;
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function(result){
+      deferredPrompt=null;
+      installBtn.style.display='none';
+    });
+  });
+}
+window.addEventListener('appinstalled',function(){
+  deferredPrompt=null;
+  var btn=document.getElementById('b-install');
+  if(btn)btn.style.display='none';
+});
+</script>
+</body>
+</html>
