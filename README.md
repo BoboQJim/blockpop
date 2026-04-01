@@ -1,12 +1,25 @@
-# BlockPop Web – Match & Blast Puzzle (Ad-Free PWA Edition)
+# BlockPop Web v2 – Infinite + Level Mode (Ad-Free PWA)
 
-A casual puzzle game combining **block placement** and **match-3 popping** mechanics. This is the **ad-free web edition** with PWA support and SEO optimization.
+A casual puzzle game combining **block placement** and **match-3 popping** mechanics. Features two game modes: **Infinite** and **100-Level Challenge**.
+
+## Game Modes
+
+### Infinite Mode
+Play endlessly and aim for the highest score. Earn coins based on your final score when the game ends.
+
+### Level Mode (100 Levels)
+Progressive challenge with unique goals per level:
+- **Color goals**: Clear a specific number of blocks of certain colors
+- **Score goals**: Reach a target score
+- Difficulty increases gradually from Level 1 to Level 100
+- Earn coin rewards for completing each level
+- Levels unlock sequentially — complete one to unlock the next
 
 ## How to Play
 
 1. **Drag** block pieces from the tray onto the 10x10 grid
-2. **Tap** a piece to **rotate** it 90 degrees before placing
-3. **3+ same-color** blocks connected horizontally/vertically auto-pop (flood-fill detection)
+2. **Tap** a piece to **rotate** it 90 degrees
+3. **3+ same-color** blocks connected horizontally/vertically auto-pop
 4. **Fill a full row or column** to clear it
 5. Both clearing mechanics work simultaneously with chain cascades
 6. Use **power-ups** when you have enough coins
@@ -17,102 +30,45 @@ A casual puzzle game combining **block placement** and **match-3 popping** mecha
 |----------|------|--------|
 | Hammer | 50 coins | Remove a single cell |
 | Bomb | 100 coins | Clear a 3x3 area |
-| Shuffle | 80 coins | Replace current pieces with new ones |
-
-Power-ups are purchased exclusively with coins earned through gameplay.
+| Shuffle | 80 coins | Replace current pieces |
 
 ## Coin System
 
-- Earn coins based on your score: `coins = score / 10`
+- **Infinite Mode**: Earn `score / 10` coins when game ends
+- **Level Mode**: Earn fixed coin reward on level completion (increases with level)
 - Coins persist across sessions (localStorage)
-- Spend coins on power-ups
-
-## PWA Support
-
-The game can be installed as a Progressive Web App for offline play:
-
-- Service Worker caches all game assets for offline use
-- `manifest.json` enables "Add to Home Screen" on mobile and desktop
-- Install button appears automatically when the browser supports PWA installation
-
-## SEO & Web Optimization
-
-This version includes comprehensive SEO and discoverability optimizations:
-
-- **Meta tags**: title, description, keywords, robots directives
-- **Open Graph**: og:title, og:description, og:image, og:type for social sharing
-- **Twitter Cards**: summary_large_image card type
-- **Structured Data**: JSON-LD WebApplication + FAQPage schema
-- **Canonical URL**: prevents duplicate content issues
-- **Hreflang**: multi-language link hints
-- **Noscript fallback**: semantic HTML content for crawlers
-- **sitemap.xml**: standard XML sitemap
-- **robots.txt**: crawler directives with sitemap reference
-- **PWA manifest**: installability signals for search ranking
-
-### Before Deployment
-
-Replace `https://yourdomain.com` with your actual domain in these files:
-
-- `index.html` — canonical, og:url, og:image, twitter:image, hreflang links
-- `sitemap.xml` — loc URL
-- `robots.txt` — sitemap URL
 
 ## Deployment
 
-### Local
+Replace `https://yourdomain.com` with your actual domain in: `index.html`, `sitemap.xml`, `robots.txt`.
+
 ```bash
 npx serve .
 # or
 python3 -m http.server 8080
 ```
 
-### Web Server (HTTPS required for PWA)
-Deploy all files to your web server root. HTTPS is required for:
-- Service Worker registration
-- PWA installation
-- Secure localStorage
-
-## Piece Generation
-
-Pieces are validated at generation time to ensure no piece contains 3+ same-color adjacent cells internally. This prevents pieces from auto-clearing on placement.
-
-## Tech Stack
-
-- Vanilla HTML5, CSS3, JavaScript (no dependencies)
-- Web Audio API for procedural sound effects
-- CSS glassmorphism with backdrop-filter
-- localStorage for persistence
-- Pointer Events API for cross-platform input
-- Service Worker for offline caching
-- Web App Manifest for PWA installation
+HTTPS is required for PWA features.
 
 ## Files
 
 ```
-blockpop-web/
-  index.html          - Game structure, SEO meta, PWA registration
-  style.css           - Visual styling and animations
-  game.js             - Game engine and logic (ad-free)
-  manifest.json       - PWA manifest
-  sw.js               - Service Worker for offline caching
-  sitemap.xml         - XML sitemap for search engines
-  robots.txt          - Crawler directives
-  icons/
-    icon-192.png      - PWA icon 192x192
-    icon-512.png      - PWA icon 512x512
-    apple-touch-icon.png - Apple touch icon 180x180
-    og-image.png      - Open Graph social sharing image 1200x630
-  README.md           - This file
+blockpop-web-v2/
+  index.html       - Game structure, SEO meta, PWA registration
+  style.css        - Visual styling and animations
+  game.js          - Game engine with dual-mode support
+  manifest.json    - PWA manifest
+  sw.js            - Service Worker (v2 cache)
+  sitemap.xml      - XML sitemap
+  robots.txt       - Crawler directives
+  icons/           - PWA icons + OG image
+  README.md        - This file
 ```
 
-## Differences from Ad Version (blockpop/)
+## Version History
 
-| Feature | blockpop/ (Ad Version) | blockpop-web/ (This Version) |
-|---------|----------------------|------------------------------|
-| Ads | GameMonetize SDK integrated | No ads |
-| Power-ups | Coins or watch ad | Coins only |
-| Game Over | Watch ad for +50 coins | No ad option |
-| PWA | No | Yes (offline + installable) |
-| SEO | Basic | Full (meta, OG, schema, sitemap) |
-| Android wrapper | Yes | No (PWA replaces native wrapper) |
+| Version | Folder | Features |
+|---------|--------|----------|
+| v1 (Ad) | `blockpop/` | GameMonetize SDK, ad-powered power-ups |
+| v1 (Web) | `blockpop-web/` | Ad-free, coins-only, PWA, SEO |
+| **v2 (Web)** | **`blockpop-web-v2/`** | **+ Infinite/Level dual mode, 100 levels, improved drag** |
